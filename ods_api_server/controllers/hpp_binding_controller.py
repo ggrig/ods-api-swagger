@@ -32,10 +32,11 @@ from ods_api_server.models.modify_invoice_v3_body import ModifyInvoiceV3Body  # 
 from ods_api_server.models.modify_invoice_v4_body import ModifyInvoiceV4Body  # noqa: E501
 from ods_api_server import util
 
-import pprint
+import logging
+logger = logging.getLogger(__name__)
 
 def change_contact_information(body):  # noqa: E501
-    print('>> ChangeContactInformation')
+    logger.info('>> ChangeContactInformation')
 
     """ChangeContactInformation
 
@@ -52,7 +53,7 @@ def change_contact_information(body):  # noqa: E501
 
 
 def change_customer_address(body):  # noqa: E501
-    print('>> ChangeCustomerAddress')
+    logger.info('>> ChangeCustomerAddress')
 
     """ChangeCustomerAddress
 
@@ -69,7 +70,7 @@ def change_customer_address(body):  # noqa: E501
 
 
 def change_customer_address_v2(body):  # noqa: E501
-    print('>> ChangeCustomerAddressV2')
+    logger.info('>> ChangeCustomerAddressV2')
 
     """ChangeCustomerAddressV2
 
@@ -86,7 +87,7 @@ def change_customer_address_v2(body):  # noqa: E501
 
 
 def change_invoice_address(body):  # noqa: E501
-    print('>> ChangeInvoiceAddress')
+    logger.info('>> ChangeInvoiceAddress')
 
     """ChangeInvoiceAddress
 
@@ -103,15 +104,15 @@ def change_invoice_address(body):  # noqa: E501
             result = ChangeInvoiceAddressResult(body.change_invoice_address)
             return result
         else:
-            print(f'Not JSON {connexion.request}')
+            logger.info(f'Not JSON {connexion.request}')
     except Exception as ex:
-        print(f'ChangeInvoiceAddress exception: {str(ex)}')
+        logger.error(f'ChangeInvoiceAddress exception: {str(ex)}')
 
     return '<< ChangeInvoiceAddress wrong processing path'
 
 
 def confirm_invoice(body):  # noqa: E501
-    print('>> ConfirmInvoice')
+    logger.info('>> ConfirmInvoice')
 
     """ConfirmInvoice
 
@@ -128,7 +129,7 @@ def confirm_invoice(body):  # noqa: E501
 
 
 def insert_payment(body):  # noqa: E501
-    print('>> InsertPayment')
+    logger.info('>> InsertPayment')
 
     """InsertPayment
 
@@ -145,7 +146,7 @@ def insert_payment(body):  # noqa: E501
 
 
 def insert_payment_v2(body):  # noqa: E501
-    print('>> InsertPaymentV2')
+    logger.info('>> InsertPaymentV2')
 
     """InsertPaymentV2
 
@@ -162,7 +163,7 @@ def insert_payment_v2(body):  # noqa: E501
 
 
 def insert_payment_v3(body):  # noqa: E501
-    print('>> InsertPaymentV3')
+    logger.info('>> InsertPaymentV3')
 
     """InsertPaymentV3
 
@@ -179,7 +180,7 @@ def insert_payment_v3(body):  # noqa: E501
 
 
 def modify_hotel_bank_account_info(body):  # noqa: E501
-    print('>> ModifyHotelBankAccountInfo')
+    logger.info('>> ModifyHotelBankAccountInfo')
 
     """ModifyHotelBankAccountInfo
 
@@ -196,7 +197,7 @@ def modify_hotel_bank_account_info(body):  # noqa: E501
 
 
 def modify_hotel_credit_card_info(body):  # noqa: E501
-    print('>> ModifyHotelCreditCardInfo')
+    logger.info('>> ModifyHotelCreditCardInfo')
 
     """ModifyHotelCreditCardInfo
 
@@ -213,7 +214,7 @@ def modify_hotel_credit_card_info(body):  # noqa: E501
 
 
 def modify_invoice(body):  # noqa: E501
-    print('>> ModifyInvoice')
+    logger.info('>> ModifyInvoice')
 
     """ModifyInvoice
 
@@ -230,7 +231,7 @@ def modify_invoice(body):  # noqa: E501
 
 
 def modify_invoice_v2(body):  # noqa: E501
-    print('>> ModifyInvoiceV2')
+    logger.info('>> ModifyInvoiceV2')
 
     """ModifyInvoiceV2
 
@@ -247,7 +248,7 @@ def modify_invoice_v2(body):  # noqa: E501
 
 
 def modify_invoice_v3(body):  # noqa: E501
-    print('>> ModifyInvoiceV3')
+    logger.info('>> ModifyInvoiceV3')
 
     """ModifyInvoiceV3
 
@@ -264,7 +265,7 @@ def modify_invoice_v3(body):  # noqa: E501
 
 
 def modify_invoice_v4(body):  # noqa: E501
-    print('>> ModifyInvoiceV4')
+    logger.info('>> ModifyInvoiceV4')
 
     """ModifyInvoiceV4
 
