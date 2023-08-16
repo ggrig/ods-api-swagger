@@ -5,6 +5,7 @@ from ods_api_server.models.change_contact_information_body import ChangeContactI
 from ods_api_server.models.change_customer_address_body import ChangeCustomerAddressBody  # noqa: E501
 from ods_api_server.models.change_customer_address_v2_body import ChangeCustomerAddressV2Body  # noqa: E501
 from ods_api_server.models.change_invoice_address_body import ChangeInvoiceAddressBody  # noqa: E501
+from ods_api_server.models.change_invoice_address_result import ChangeInvoiceAddressResult
 from ods_api_server.models.confirm_invoice_body import ConfirmInvoiceBody  # noqa: E501
 from ods_api_server.models.inline_response200 import InlineResponse200  # noqa: E501
 from ods_api_server.models.inline_response2001 import InlineResponse2001  # noqa: E501
@@ -31,8 +32,11 @@ from ods_api_server.models.modify_invoice_v3_body import ModifyInvoiceV3Body  # 
 from ods_api_server.models.modify_invoice_v4_body import ModifyInvoiceV4Body  # noqa: E501
 from ods_api_server import util
 
+import pprint
 
 def change_contact_information(body):  # noqa: E501
+    print('>> ChangeContactInformation')
+
     """ChangeContactInformation
 
      # noqa: E501
@@ -48,6 +52,8 @@ def change_contact_information(body):  # noqa: E501
 
 
 def change_customer_address(body):  # noqa: E501
+    print('>> ChangeCustomerAddress')
+
     """ChangeCustomerAddress
 
      # noqa: E501
@@ -63,6 +69,8 @@ def change_customer_address(body):  # noqa: E501
 
 
 def change_customer_address_v2(body):  # noqa: E501
+    print('>> ChangeCustomerAddressV2')
+
     """ChangeCustomerAddressV2
 
      # noqa: E501
@@ -78,6 +86,8 @@ def change_customer_address_v2(body):  # noqa: E501
 
 
 def change_invoice_address(body):  # noqa: E501
+    print('>> ChangeInvoiceAddress')
+
     """ChangeInvoiceAddress
 
      # noqa: E501
@@ -87,12 +97,22 @@ def change_invoice_address(body):  # noqa: E501
 
     :rtype: InlineResponse200
     """
-    if connexion.request.is_json:
-        body = ChangeInvoiceAddressBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ChangeInvoiceAddressBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ChangeInvoiceAddressResult(body.change_invoice_address)
+            return result
+        else:
+            print(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        print(f'ChangeInvoiceAddress exception: {str(ex)}')
+
+    return '<< ChangeInvoiceAddress wrong processing path'
 
 
 def confirm_invoice(body):  # noqa: E501
+    print('>> ConfirmInvoice')
+
     """ConfirmInvoice
 
      # noqa: E501
@@ -108,6 +128,8 @@ def confirm_invoice(body):  # noqa: E501
 
 
 def insert_payment(body):  # noqa: E501
+    print('>> InsertPayment')
+
     """InsertPayment
 
      # noqa: E501
@@ -123,6 +145,8 @@ def insert_payment(body):  # noqa: E501
 
 
 def insert_payment_v2(body):  # noqa: E501
+    print('>> InsertPaymentV2')
+
     """InsertPaymentV2
 
      # noqa: E501
@@ -138,6 +162,8 @@ def insert_payment_v2(body):  # noqa: E501
 
 
 def insert_payment_v3(body):  # noqa: E501
+    print('>> InsertPaymentV3')
+
     """InsertPaymentV3
 
      # noqa: E501
@@ -153,6 +179,8 @@ def insert_payment_v3(body):  # noqa: E501
 
 
 def modify_hotel_bank_account_info(body):  # noqa: E501
+    print('>> ModifyHotelBankAccountInfo')
+
     """ModifyHotelBankAccountInfo
 
      # noqa: E501
@@ -168,6 +196,8 @@ def modify_hotel_bank_account_info(body):  # noqa: E501
 
 
 def modify_hotel_credit_card_info(body):  # noqa: E501
+    print('>> ModifyHotelCreditCardInfo')
+
     """ModifyHotelCreditCardInfo
 
      # noqa: E501
@@ -183,6 +213,8 @@ def modify_hotel_credit_card_info(body):  # noqa: E501
 
 
 def modify_invoice(body):  # noqa: E501
+    print('>> ModifyInvoice')
+
     """ModifyInvoice
 
      # noqa: E501
@@ -198,6 +230,8 @@ def modify_invoice(body):  # noqa: E501
 
 
 def modify_invoice_v2(body):  # noqa: E501
+    print('>> ModifyInvoiceV2')
+
     """ModifyInvoiceV2
 
      # noqa: E501
@@ -213,6 +247,8 @@ def modify_invoice_v2(body):  # noqa: E501
 
 
 def modify_invoice_v3(body):  # noqa: E501
+    print('>> ModifyInvoiceV3')
+
     """ModifyInvoiceV3
 
      # noqa: E501
@@ -228,6 +264,8 @@ def modify_invoice_v3(body):  # noqa: E501
 
 
 def modify_invoice_v4(body):  # noqa: E501
+    print('>> ModifyInvoiceV4')
+
     """ModifyInvoiceV4
 
      # noqa: E501
