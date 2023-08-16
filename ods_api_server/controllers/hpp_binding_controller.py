@@ -4,6 +4,7 @@ import six
 from ods_api_server.models.change_contact_information_body import ChangeContactInformationBody  # noqa: E501
 from ods_api_server.models.change_customer_address_body import ChangeCustomerAddressBody  # noqa: E501
 from ods_api_server.models.change_customer_address_v2_body import ChangeCustomerAddressV2Body  # noqa: E501
+from ods_api_server.models.change_customer_address_v2_result import ChangeCustomerAddressV2Result
 from ods_api_server.models.change_invoice_address_body import ChangeInvoiceAddressBody  # noqa: E501
 from ods_api_server.models.change_invoice_address_result import ChangeInvoiceAddressResult
 from ods_api_server.models.confirm_invoice_body import ConfirmInvoiceBody  # noqa: E501
@@ -81,10 +82,17 @@ def change_customer_address_v2(body):  # noqa: E501
 
     :rtype: InlineResponse2006
     """
-    if connexion.request.is_json:
-        body = ChangeCustomerAddressV2Body.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ChangeCustomerAddressV2Body.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ChangeCustomerAddressV2Result(body.change_customer_address_v2)
+            return result 
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ChangeCustomerAddressV2 exception: {str(ex)}')
 
+    return '<< ChangeCustomerAddressV2 wrong processing path'
 
 def change_invoice_address(body):  # noqa: E501
     logger.info('>> ChangeInvoiceAddress')
