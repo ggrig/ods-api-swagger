@@ -8,6 +8,7 @@ from ods_api_server.models.change_customer_address_v2_result import ChangeCustom
 from ods_api_server.models.change_invoice_address_body import ChangeInvoiceAddressBody  # noqa: E501
 from ods_api_server.models.change_invoice_address_result import ChangeInvoiceAddressResult
 from ods_api_server.models.confirm_invoice_body import ConfirmInvoiceBody  # noqa: E501
+from ods_api_server.models.confirm_invoice_result import ConfirmInvoiceResult
 from ods_api_server.models.inline_response200 import InlineResponse200  # noqa: E501
 from ods_api_server.models.inline_response2001 import InlineResponse2001  # noqa: E501
 from ods_api_server.models.inline_response20010 import InlineResponse20010  # noqa: E501
@@ -131,10 +132,17 @@ def confirm_invoice(body):  # noqa: E501
 
     :rtype: InlineResponse20011
     """
-    if connexion.request.is_json:
-        body = ConfirmInvoiceBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ConfirmInvoiceBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ConfirmInvoiceResult(body.confirm_invoice)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ConfirmInvoiceBody exception: {str(ex)}')
 
+    return '<< ConfirmInvoiceBody wrong processing path'
 
 def insert_payment(body):  # noqa: E501
     logger.info('>> InsertPayment')
