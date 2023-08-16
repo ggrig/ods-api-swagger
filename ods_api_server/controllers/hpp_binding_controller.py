@@ -2,6 +2,7 @@ import connexion
 import six
 
 from ods_api_server.models.change_contact_information_body import ChangeContactInformationBody  # noqa: E501
+from ods_api_server.models.change_contact_information_result import ChangeContactInformationResult
 from ods_api_server.models.change_customer_address_body import ChangeCustomerAddressBody  # noqa: E501
 from ods_api_server.models.change_customer_address_v2_body import ChangeCustomerAddressV2Body  # noqa: E501
 from ods_api_server.models.change_customer_address_v2_result import ChangeCustomerAddressV2Result
@@ -49,10 +50,21 @@ def change_contact_information(body):  # noqa: E501
 
     :rtype: InlineResponse2002
     """
-    if connexion.request.is_json:
-        body = ChangeContactInformationBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    # if connexion.request.is_json:
+    #     body = ChangeContactInformationBody.from_dict(connexion.request.get_json())  # noqa: E501
+    # return 'do some magic!'
 
+    try:
+        if connexion.request.is_json:
+            body = ChangeContactInformationBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ChangeContactInformationResult(body.change_contact_information)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ChangeContactInformationBody exception: {str(ex)}')
+
+    return '<< ChangeContactInformationBody wrong processing path'
 
 def change_customer_address(body):  # noqa: E501
     logger.info('>> ChangeCustomerAddress')
