@@ -34,6 +34,7 @@ from ods_api_server.models.modify_invoice_body import ModifyInvoiceBody  # noqa:
 from ods_api_server.models.modify_invoice_v2_body import ModifyInvoiceV2Body  # noqa: E501
 from ods_api_server.models.modify_invoice_v3_body import ModifyInvoiceV3Body  # noqa: E501
 from ods_api_server.models.modify_invoice_v4_body import ModifyInvoiceV4Body  # noqa: E501
+from ods_api_server.models.modify_invoice_v4_result import ModifyInvoiceV4Result
 from ods_api_server import util
 
 import logging
@@ -312,6 +313,14 @@ def modify_invoice_v4(body):  # noqa: E501
 
     :rtype: InlineResponse20010
     """
-    if connexion.request.is_json:
-        body = ModifyInvoiceV4Body.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ModifyInvoiceV4Body.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ModifyInvoiceV4Result(body.modify_invoice_v4)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ModifyInvoiceV4Body exception: {str(ex)}')
+
+    return '<< ModifyInvoiceV4Body wrong processing path'
