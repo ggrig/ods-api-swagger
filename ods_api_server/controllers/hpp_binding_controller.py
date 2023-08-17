@@ -230,10 +230,17 @@ def modify_hotel_bank_account_info(body):  # noqa: E501
 
     :rtype: InlineResponse20013
     """
-    if connexion.request.is_json:
-        body = ModifyHotelBankAccountInfoBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ModifyHotelBankAccountInfoBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ModifyHotelBankAccountInfoResult(body.modify_hotel_bank_account_info)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ModifyHotelBankAccountInfoBody exception: {str(ex)}')
 
+    return '<< ModifyHotelBankAccountInfoBody wrong processing path'
 
 def modify_hotel_credit_card_info(body):  # noqa: E501
     logger.info('>> ModifyHotelCreditCardInfo')
