@@ -29,7 +29,9 @@ from ods_api_server.models.insert_payment_v2_body import InsertPaymentV2Body  # 
 from ods_api_server.models.insert_payment_v3_body import InsertPaymentV3Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_result import InsertPaymentV3Result
 from ods_api_server.models.modify_hotel_bank_account_info_body import ModifyHotelBankAccountInfoBody  # noqa: E501
+from ods_api_server.models.modify_hotel_bank_account_info_result import ModifyHotelBankAccountInfoResult
 from ods_api_server.models.modify_hotel_credit_card_info_body import ModifyHotelCreditCardInfoBody  # noqa: E501
+from ods_api_server.models.modify_hotel_credit_card_info_result import ModifyHotelCreditCardInfoResult
 from ods_api_server.models.modify_invoice_body import ModifyInvoiceBody  # noqa: E501
 from ods_api_server.models.modify_invoice_v2_body import ModifyInvoiceV2Body  # noqa: E501
 from ods_api_server.models.modify_invoice_v3_body import ModifyInvoiceV3Body  # noqa: E501
@@ -245,10 +247,17 @@ def modify_hotel_credit_card_info(body):  # noqa: E501
 
     :rtype: InlineResponse20012
     """
-    if connexion.request.is_json:
-        body = ModifyHotelCreditCardInfoBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    try:
+        if connexion.request.is_json:
+            body = ModifyHotelCreditCardInfoBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = ModifyHotelCreditCardInfoResult(body.modify_hotel_credit_card_info)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'ModifyHotelCreditCardInfoBody exception: {str(ex)}')
 
+    return '<< ModifyHotelCreditCardInfoBody wrong processing path'
 
 def modify_invoice(body):  # noqa: E501
     logger.info('>> ModifyInvoice')
