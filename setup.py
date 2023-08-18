@@ -20,10 +20,10 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="HPP",
+    description="HPP-V2",
     author_email="",
     url="",
-    keywords=["Swagger", "HPP"],
+    keywords=["Swagger", "HPP-V2"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['swagger/swagger.yaml']},

@@ -16,6 +16,7 @@ from ods_api_server.models.inline_response20010 import InlineResponse20010  # no
 from ods_api_server.models.inline_response20011 import InlineResponse20011  # noqa: E501
 from ods_api_server.models.inline_response20012 import InlineResponse20012  # noqa: E501
 from ods_api_server.models.inline_response20013 import InlineResponse20013  # noqa: E501
+from ods_api_server.models.inline_response20014 import InlineResponse20014  # noqa: E501
 from ods_api_server.models.inline_response2002 import InlineResponse2002  # noqa: E501
 from ods_api_server.models.inline_response2003 import InlineResponse2003  # noqa: E501
 from ods_api_server.models.inline_response2004 import InlineResponse2004  # noqa: E501
@@ -25,6 +26,7 @@ from ods_api_server.models.inline_response2007 import InlineResponse2007  # noqa
 from ods_api_server.models.inline_response2008 import InlineResponse2008  # noqa: E501
 from ods_api_server.models.inline_response2009 import InlineResponse2009  # noqa: E501
 from ods_api_server.models.insert_payment_body import InsertPaymentBody  # noqa: E501
+from ods_api_server.models.insert_payment_pc_body import InsertPaymentPCBody  # noqa: E501
 from ods_api_server.models.insert_payment_v2_body import InsertPaymentV2Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_body import InsertPaymentV3Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_result import InsertPaymentV3Result
@@ -174,6 +176,21 @@ def insert_payment(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = InsertPaymentBody.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def insert_payment_pc(body):  # noqa: E501
+    """InsertPaymentPC
+
+     # noqa: E501
+
+    :param body: 
+    :type body: dict | bytes
+
+    :rtype: InlineResponse20014
+    """
+    if connexion.request.is_json:
+        body = InsertPaymentPCBody.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

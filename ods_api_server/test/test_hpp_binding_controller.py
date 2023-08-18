@@ -16,6 +16,7 @@ from ods_api_server.models.inline_response20010 import InlineResponse20010  # no
 from ods_api_server.models.inline_response20011 import InlineResponse20011  # noqa: E501
 from ods_api_server.models.inline_response20012 import InlineResponse20012  # noqa: E501
 from ods_api_server.models.inline_response20013 import InlineResponse20013  # noqa: E501
+from ods_api_server.models.inline_response20014 import InlineResponse20014  # noqa: E501
 from ods_api_server.models.inline_response2002 import InlineResponse2002  # noqa: E501
 from ods_api_server.models.inline_response2003 import InlineResponse2003  # noqa: E501
 from ods_api_server.models.inline_response2004 import InlineResponse2004  # noqa: E501
@@ -25,6 +26,7 @@ from ods_api_server.models.inline_response2007 import InlineResponse2007  # noqa
 from ods_api_server.models.inline_response2008 import InlineResponse2008  # noqa: E501
 from ods_api_server.models.inline_response2009 import InlineResponse2009  # noqa: E501
 from ods_api_server.models.insert_payment_body import InsertPaymentBody  # noqa: E501
+from ods_api_server.models.insert_payment_pc_body import InsertPaymentPCBody  # noqa: E501
 from ods_api_server.models.insert_payment_v2_body import InsertPaymentV2Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_body import InsertPaymentV3Body  # noqa: E501
 from ods_api_server.models.modify_hotel_bank_account_info_body import ModifyHotelBankAccountInfoBody  # noqa: E501
@@ -46,7 +48,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ChangeContactInformationBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ChangeContactInformation',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ChangeContactInformation',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -60,7 +62,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ChangeCustomerAddressBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ChangeCustomerAddress',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ChangeCustomerAddress',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -74,7 +76,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ChangeCustomerAddressV2Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ChangeCustomerAddressV2',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ChangeCustomerAddressV2',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -88,7 +90,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ChangeInvoiceAddressBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ChangeInvoiceAddress',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ChangeInvoiceAddress',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -102,7 +104,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ConfirmInvoiceBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ConfirmInvoice',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ConfirmInvoice',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -116,7 +118,21 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = InsertPaymentBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/InsertPayment',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/InsertPayment',
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_insert_payment_pc(self):
+        """Test case for insert_payment_pc
+
+        InsertPaymentPC
+        """
+        body = InsertPaymentPCBody()
+        response = self.client.open(
+            '/Marquardt-Informatik/HPP-V2/1.0.0/InsertPaymentPC',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -130,7 +146,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = InsertPaymentV2Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/InsertPaymentV2',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/InsertPaymentV2',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -144,7 +160,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = InsertPaymentV3Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/InsertPaymentV3',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/InsertPaymentV3',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -158,7 +174,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyHotelBankAccountInfoBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyHotelBankAccountInfo',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyHotelBankAccountInfo',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -172,7 +188,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyHotelCreditCardInfoBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyHotelCreditCardInfo',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyHotelCreditCardInfo',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -186,7 +202,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyInvoiceBody()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyInvoice',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyInvoice',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -200,7 +216,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyInvoiceV2Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyInvoiceV2',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyInvoiceV2',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -214,7 +230,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyInvoiceV3Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyInvoiceV3',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyInvoiceV3',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -228,7 +244,7 @@ class TestHPPBindingController(BaseTestCase):
         """
         body = ModifyInvoiceV4Body()
         response = self.client.open(
-            '/Marquardt-Informatik/HPP/1.0.0.0/ModifyInvoiceV4',
+            '/Marquardt-Informatik/HPP-V2/1.0.0/ModifyInvoiceV4',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
