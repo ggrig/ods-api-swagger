@@ -47,3 +47,13 @@ docker build -t ods_api_server .
 # starting up a container
 docker run -p 8000:8000 ods_api_server
 ```
+
+# Running with Docker-Compose
+
+```bash
+# start
+docker-compose up -d --build
+
+#stop
+docker-compose down
+```
