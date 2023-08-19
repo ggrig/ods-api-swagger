@@ -27,6 +27,7 @@ from ods_api_server.models.inline_response2008 import InlineResponse2008  # noqa
 from ods_api_server.models.inline_response2009 import InlineResponse2009  # noqa: E501
 from ods_api_server.models.insert_payment_body import InsertPaymentBody  # noqa: E501
 from ods_api_server.models.insert_payment_pc_body import InsertPaymentPCBody  # noqa: E501
+from ods_api_server.models.insert_payment_pc_result import InsertPaymentPCResult
 from ods_api_server.models.insert_payment_v2_body import InsertPaymentV2Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_body import InsertPaymentV3Body  # noqa: E501
 from ods_api_server.models.insert_payment_v3_result import InsertPaymentV3Result
@@ -189,10 +190,21 @@ def insert_payment_pc(body):  # noqa: E501
 
     :rtype: InlineResponse20014
     """
-    if connexion.request.is_json:
-        body = InsertPaymentPCBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    # if connexion.request.is_json:
+    #     body = InsertPaymentPCBody.from_dict(connexion.request.get_json())  # noqa: E501
+    # return 'do some magic!'
 
+    try:
+        if connexion.request.is_json:
+            body = InsertPaymentPCBody.from_dict(connexion.request.get_json())  # noqa: E501
+            result = InsertPaymentPCResult(body.insert_payment_pc)
+            return result
+        else:
+            logger.info(f'Not JSON {connexion.request}')
+    except Exception as ex:
+        logger.error(f'InsertPaymentPCBody exception: {str(ex)}')
+
+    return '<< InsertPaymentPCBody wrong processing path'
 
 def insert_payment_v2(body):  # noqa: E501
     logger.info('>> InsertPaymentV2')
