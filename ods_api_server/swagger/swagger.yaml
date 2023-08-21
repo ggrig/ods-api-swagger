@@ -25,7 +25,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangeInvoiceAddress_body'
+              allOf:
+              - $ref: '#/components/schemas/ChangeInvoiceAddress'
         required: true
       responses:
         "200":
@@ -33,7 +34,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                allOf:
+                - $ref: '#/components/schemas/ChangeInvoiceAddress_Result'
+                - xml:
+                    name: ChangeInvoiceAddress_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ChangeCustomerAddress:
@@ -48,7 +54,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangeCustomerAddress_body'
+              allOf:
+              - $ref: '#/components/schemas/ChangeCustomerAddress'
+              - xml:
+                  name: ChangeCustomerAddress
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -56,7 +67,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                allOf:
+                - $ref: '#/components/schemas/ChangeCustomerAddress_Result'
+                - xml:
+                    name: ChangeCustomerAddress_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ChangeContactInformation:
@@ -71,7 +87,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangeContactInformation_body'
+              allOf:
+              - $ref: '#/components/schemas/ChangeContactInformation'
+              - xml:
+                  name: ChangeContactInformation
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -79,7 +100,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                allOf:
+                - $ref: '#/components/schemas/ChangeContactInformation_Result'
+                - xml:
+                    name: ChangeContactInformation_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /InsertPayment:
@@ -94,7 +120,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InsertPayment_body'
+              allOf:
+              - $ref: '#/components/schemas/InsertPayment'
+              - xml:
+                  name: InsertPayment
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -117,7 +148,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyInvoice_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyInvoice'
+              - xml:
+                  name: ModifyInvoice
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -125,7 +161,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                allOf:
+                - $ref: '#/components/schemas/ModifyInvoice_Result'
+                - xml:
+                    name: ModifyInvoice_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /InsertPaymentV2:
@@ -140,7 +181,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InsertPaymentV2_body'
+              allOf:
+              - $ref: '#/components/schemas/InsertPaymentV2'
+              - xml:
+                  name: InsertPaymentV2
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -148,7 +194,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                allOf:
+                - $ref: '#/components/schemas/InsertPaymentV2_Result'
+                - xml:
+                    name: InsertPaymentV2_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ChangeCustomerAddressV2:
@@ -163,7 +214,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangeCustomerAddressV2_body'
+              allOf:
+              - $ref: '#/components/schemas/ChangeCustomerAddressV2'
+              - xml:
+                  name: ChangeCustomerAddressV2
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -171,7 +227,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                allOf:
+                - $ref: '#/components/schemas/ChangeCustomerAddressV2_Result'
+                - xml:
+                    name: ChangeCustomerAddressV2_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ModifyInvoiceV2:
@@ -186,7 +247,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyInvoiceV2_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyInvoiceV2'
+              - xml:
+                  name: ModifyInvoiceV2
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -194,7 +260,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                allOf:
+                - $ref: '#/components/schemas/ModifyInvoiceV2_Result'
+                - xml:
+                    name: ModifyInvoiceV2_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ModifyInvoiceV3:
@@ -209,7 +280,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyInvoiceV3_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyInvoiceV3'
+              - xml:
+                  name: ModifyInvoiceV3
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -217,7 +293,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                allOf:
+                - $ref: '#/components/schemas/ModifyInvoiceV3_Result'
+                - xml:
+                    name: ModifyInvoiceV3_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /InsertPaymentV3:
@@ -232,7 +313,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InsertPaymentV3_body'
+              allOf:
+              - $ref: '#/components/schemas/InsertPaymentV3'
+              - xml:
+                  name: InsertPaymentV3
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -240,7 +326,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_9'
+                allOf:
+                - $ref: '#/components/schemas/InsertPaymentV3_Result'
+                - xml:
+                    name: InsertPaymentV3_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ModifyInvoiceV4:
@@ -255,7 +346,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyInvoiceV4_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyInvoiceV4'
+              - xml:
+                  name: ModifyInvoiceV4
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -263,7 +359,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                allOf:
+                - $ref: '#/components/schemas/ModifyInvoiceV4_Result'
+                - xml:
+                    name: ModifyInvoiceV4_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ConfirmInvoice:
@@ -278,7 +379,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ConfirmInvoice_body'
+              allOf:
+              - $ref: '#/components/schemas/ConfirmInvoice'
+              - xml:
+                  name: ConfirmInvoice
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -286,7 +392,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_11'
+                allOf:
+                - $ref: '#/components/schemas/ConfirmInvoice_Result'
+                - xml:
+                    name: ConfirmInvoice_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ModifyHotelCreditCardInfo:
@@ -301,7 +412,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyHotelCreditCardInfo_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyHotelCreditCardInfo'
+              - xml:
+                  name: ModifyHotelCreditCardInfo
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -309,7 +425,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_12'
+                allOf:
+                - $ref: '#/components/schemas/ModifyHotelCreditCardInfo_Result'
+                - xml:
+                    name: ModifyHotelCreditCardInfo_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /ModifyHotelBankAccountInfo:
@@ -324,7 +445,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ModifyHotelBankAccountInfo_body'
+              allOf:
+              - $ref: '#/components/schemas/ModifyHotelBankAccountInfo'
+              - xml:
+                  name: ModifyHotelBankAccountInfo
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -332,7 +458,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_13'
+                allOf:
+                - $ref: '#/components/schemas/ModifyHotelBankAccountInfo_Result'
+                - xml:
+                    name: ModifyHotelBankAccountInfo_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
   /InsertPaymentPC:
@@ -347,7 +478,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InsertPaymentPC_body'
+              allOf:
+              - $ref: '#/components/schemas/InsertPaymentPC'
+              - xml:
+                  name: InsertPaymentPC
+                  attribute: false
+                  wrapped: false
         required: true
       responses:
         "200":
@@ -355,7 +491,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_14'
+                allOf:
+                - $ref: '#/components/schemas/InsertPaymentPC_Result'
+                - xml:
+                    name: InsertPaymentPC_Result
+                    attribute: false
+                    wrapped: false
       deprecated: false
       x-openapi-router-controller: ods_api_server.controllers.hpp_binding_controller
 components:

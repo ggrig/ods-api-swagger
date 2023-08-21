@@ -181,6 +181,8 @@ def insert_payment(body):  # noqa: E501
 
 
 def insert_payment_pc(body):  # noqa: E501
+    logger.info('>> InsertPaymentPC')
+
     """InsertPaymentPC
 
      # noqa: E501
